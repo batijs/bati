@@ -1,3 +1,5 @@
+// BATI.has("auth0")
+import "dotenv/config";
 import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import CredentialsProvider from "@auth/core/providers/credentials";
@@ -7,6 +9,7 @@ import { createMiddleware } from "@hattip/adapter-node";
 import * as trpcExpress from "@trpc/server/adapters/express";
 import cookieParser from "cookie-parser";
 import express, { type Request } from "express";
+import { auth, type ConfigParams } from "express-openid-connect";
 import { getAuth } from "firebase-admin/auth";
 import { telefunc } from "telefunc";
 import { VikeAuth } from "vike-authjs";
@@ -16,6 +19,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const isProduction = process.env.NODE_ENV === "production";
 const root = __dirname;
+const port = process.env.PORT || 3000;
 
 startServer();
 
@@ -123,6 +127,23 @@ async function startServer() {
     });
   }
 
+  if (BATI.has("auth0")) {
+    const config: ConfigParams = {
+      authRequired: false, // Controls whether authentication is required for all routes
+      auth0Logout: true, // Uses Auth0 logout feature
+      baseURL: `http://localhost:${port}`, // The URL where the application is served
+      clientID: process.env.CLIENT_ID, // The Client ID found in your Application settings
+      issuerBaseURL: process.env.ISSUER_BASE_URL, // The Domain as a secure URL found in your Application settings
+      secret: process.env.SECRET, // A long random string
+      routes: {
+        login: "/api/auth/login", // Custom login route, default is : "/login"
+        logout: "/api/auth/logout", // Custom logout route, default is : "/logout"
+      },
+    };
+
+    app.use(auth(config));
+  }
+
   if (BATI.has("trpc")) {
     /**
      * tRPC route
@@ -182,19 +203,19 @@ async function startServer() {
       : { urlOriginal: req.originalUrl };
 
     const pageContext = await renderPage(pageContextInit);
-    const { httpResponse } = pageContext
+    const { httpResponse } = pageContext;
 
     if (!httpResponse) {
-      return next()
+      return next();
     } else {
       const { statusCode, headers } = httpResponse;
-      headers.forEach(([name, value]) => res.setHeader(name, value))
-      res.status(statusCode)
+      headers.forEach(([name, value]) => res.setHeader(name, value));
+      res.status(statusCode);
       httpResponse.pipe(res);
     }
   });
 
-  app.listen(process.env.PORT ? parseInt(process.env.PORT) : 3000, () => {
+  app.listen(port, () => {
     console.log("Server listening on http://localhost:3000");
   });
 }
