@@ -819,8 +819,8 @@ importers:
         specifier: ^18.19.14
         version: 18.19.14
       '@vite-plugin-vercel/vike':
-        specifier: ^4.0.2
-        version: 4.0.2(vike@0.4.167)(vite-plugin-vercel@4.0.2)(vite@5.2.6)
+        specifier: ^5.0.2
+        version: 5.0.2(vike@0.4.167)(vite-plugin-vercel@4.0.2)(vite@5.2.6)
       vike:
         specifier: ^0.4.167
         version: 0.4.167(vite@5.2.6)
@@ -829,7 +829,7 @@ importers:
         version: 5.2.6(@types/node@18.19.14)
       vite-plugin-vercel:
         specifier: ^4.0.2
-        version: 4.0.2(@vite-plugin-vercel/vike@4.0.2)(vike@0.4.167)(vite@5.2.6)
+        version: 4.0.2(@vite-plugin-vercel/vike@5.0.2)(vike@0.4.167)(vite@5.2.6)
 
   boilerplates/vue:
     dependencies:
@@ -3613,10 +3613,10 @@ packages:
       ajv: 6.12.6
     dev: true
 
-  /@vite-plugin-vercel/vike@4.0.2(vike@0.4.167)(vite-plugin-vercel@4.0.2)(vite@5.2.6):
-    resolution: {integrity: sha512-mGJVAhFnmQ2lJk4e4mS5U3DR98DrUm5KgnaY8Z6+6P4TREUiQQ8gXQRGqru9P5BfyHI52Ecpu6+ZYnV2R/IN2g==}
+  /@vite-plugin-vercel/vike@5.0.2(vike@0.4.167)(vite-plugin-vercel@4.0.2)(vite@5.2.6):
+    resolution: {integrity: sha512-/9ZH17g4qsMV/41crJ4od5N463WgqiENJJiOil26AVpfRW1sK9E0s12txZMKCkOiyRxIvrWm005Q8cz0KkPC0g==}
     peerDependencies:
-      vike: '*'
+      vike: ^0.4.162
       vite: ^4.4 || ^5.0.2
       vite-plugin-vercel: '*'
     dependencies:
@@ -3624,7 +3624,7 @@ packages:
       nanoid: 5.0.6
       vike: 0.4.167(vite@5.2.6)
       vite: 5.2.6(@types/node@18.19.14)
-      vite-plugin-vercel: 4.0.2(@vite-plugin-vercel/vike@4.0.2)(vike@0.4.167)(vite@5.2.6)
+      vite-plugin-vercel: 4.0.2(@vite-plugin-vercel/vike@5.0.2)(vike@0.4.167)(vite@5.2.6)
     dev: true
 
   /@vitejs/plugin-react@4.2.1(vite@5.2.6):
@@ -9086,7 +9086,7 @@ packages:
       - supports-color
     dev: true
 
-  /vite-plugin-vercel@4.0.2(@vite-plugin-vercel/vike@4.0.2)(vike@0.4.167)(vite@5.2.6):
+  /vite-plugin-vercel@4.0.2(@vite-plugin-vercel/vike@5.0.2)(vike@0.4.167)(vite@5.2.6):
     resolution: {integrity: sha512-ECAX2UkNW1/Ws+qqM1h6Vuz4w+/0zFl3D1xkB54cCjddiNpZgxxjlzv+PU24Idsiwhy7jI/+hlbGOYho7qjzKg==}
     peerDependencies:
       '@vite-plugin-vercel/vike': 4.0.2
@@ -9101,7 +9101,7 @@ packages:
       '@brillout/libassert': 0.5.8
       '@vercel/build-utils': 7.9.1
       '@vercel/routing-utils': 3.1.0
-      '@vite-plugin-vercel/vike': 4.0.2(vike@0.4.167)(vite-plugin-vercel@4.0.2)(vite@5.2.6)
+      '@vite-plugin-vercel/vike': 5.0.2(vike@0.4.167)(vite-plugin-vercel@4.0.2)(vite@5.2.6)
       esbuild: 0.20.2
       eval: 0.1.8
       fast-glob: 3.3.2
